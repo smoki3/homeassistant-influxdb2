@@ -13,7 +13,7 @@ RUN \
     && apt-get install -y --no-install-recommends \
         libnginx-mod-http-lua=1:0.10.23-1 \
         luarocks=3.8.0+dfsg1-1 \
-        nginx=1.22.1-9 \
+        nginx=1.25.3 \
         procps=2:4.0.2-3 \
     \
     && ARCH="${BUILD_ARCH}" \
