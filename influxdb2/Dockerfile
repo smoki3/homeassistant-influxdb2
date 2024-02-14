@@ -36,7 +36,7 @@ RUN \
     /var/{cache,log}/* \
     /var/lib/apt/lists/* \
     \
-    && mkdir -p /data/influxdb2/engine
+    && mkdir -p /data/influxdb2/engine \
     && mkdir -p /var/log/nginx \
     && touch /var/log/nginx/error.log
 
