@@ -5,7 +5,7 @@ slug: influxdb2in
 description: Scalable datastore for metrics, events, and real-time analytics. Running InfluxDB v2.x on ARCH64 and ARM64 Achitecture
 url: https://github.com/smoki3/homeassistant-influxdb2
 ingress: true
-ingress_port: 1337
+ingress_port: 8086
 ingress_stream: true
 startup: services
 homeassistant: 0.92.0b2
