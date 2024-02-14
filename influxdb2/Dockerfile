@@ -46,10 +46,6 @@ RUN \
 # Copy root filesystem
 COPY rootfs /
 
-# Health check
-HEALTHCHECK \
-    CMD curl --fail http://127.0.0.1:1337/api/health || exit 1
-
 # Fix perms -> not necessary due too appamor.txt
 RUN chmod 755 /etc/s6-overlay/s6-rc.d/init-influxdb2/run
 RUN chmod 755 /etc/s6-overlay/s6-rc.d/influxdb2-server/run
