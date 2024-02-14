@@ -5,14 +5,10 @@ server {
     include /etc/nginx/includes/proxy_params.conf;
 
     location / {
-        access_by_lua_file /etc/nginx/lua/ha-auth.lua;
-        proxy_pass http://backend%%ingress_entry%%/;
-        sub_filter_once off;
-        sub_filter '%%ingress_entry%%/'  '';
+        return 302 $scheme://$http_host%%ingress_entry%%/;
     }
-
-    location %%ingress_entry%%/ {
-        access_by_lua_file /etc/nginx/lua/ha-auth.lua;
-        proxy_pass http://backend;
+    location %%ingress_entry%% {
+        rewrite  ^%%ingress_entry%%/(.*)  /$1 break;
+        proxy_pass http://backend/;
     }
 }

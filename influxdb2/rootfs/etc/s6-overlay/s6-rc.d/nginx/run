@@ -1,10 +1,11 @@
 #!/command/with-contenv bashio
 # ==============================================================================
-# Home Assistant Community Add-on: InfluxDB
-# Runs the NGINX daemon
+# Home Assistant Community Add-on: grafana
+# Runs the Nginx daemon
 # ==============================================================================
-# Wait for Chronograf to become available
-bashio::net.wait_for 8086 localhost 9000
+
+# Wait for grafana to become available
+bashio::net.wait_for 8086
 
 bashio::log.info "Starting NGINX..."
 

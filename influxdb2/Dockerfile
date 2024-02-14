@@ -11,10 +11,11 @@ ARG BUILD_ARCH=amd64
 RUN \
     apt-get update \
     && apt-get install -y --no-install-recommends \
-        libnginx-mod-http-lua=1:0.10.23-1 \
-        luarocks=3.8.0+dfsg1-1 \
+        fonts-noto-cjk=1:20220127+repack1-1 \
+        libfontconfig1=2.14.1-4 \
+        memcached=1.6.18-1 \
+        musl=1.2.3-1 \
         nginx=1.22.1-9 \
-        procps=2:4.0.2-3 \
     \
     && ARCH="${BUILD_ARCH}" \
     && if [ "${BUILD_ARCH}" = "aarch64" ]; then ARCH="arm64"; fi \
@@ -35,6 +36,7 @@ RUN \
     /etc/nginx \
     /var/{cache,log}/* \
     /var/lib/apt/lists/* \
+    /etc/nginx \
     \
     && mkdir -p /data/influxdb2/engine \
     && mkdir -p /var/log/nginx \
@@ -44,13 +46,14 @@ RUN \
 # Copy root filesystem
 COPY rootfs /
 
+# Health check
+HEALTHCHECK \
+    CMD curl --fail http://127.0.0.1:1337/api/health || exit 1
+
 # Fix perms -> not necessary due too appamor.txt
 RUN chmod 755 /etc/s6-overlay/s6-rc.d/init-influxdb2/run
 RUN chmod 755 /etc/s6-overlay/s6-rc.d/influxdb2-server/run
 RUN chmod 755 /etc/s6-overlay/s6-rc.d/influxdb2-server/finish
-RUN chmod 755 /etc/cont-init.d/nginx.sh
-RUN chmod 755 /etc/s6-overlay/s6-rc.d/nginx/run
-RUN chmod 755 /etc/s6-overlay/s6-rc.d/nginx/finish
 
 # Build arguments
 ARG BUILD_ARCH

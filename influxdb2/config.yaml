@@ -9,7 +9,6 @@ ingress_port: 1337
 ingress_stream: true
 startup: services
 homeassistant: 0.92.0b2
-webui: http://[HOST]:[PORT:8086]
 hassio_api: true
 arch:
   - aarch64
