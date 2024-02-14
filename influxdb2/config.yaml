@@ -21,8 +21,10 @@ map:
   - ssl
 ports:
   8086/tcp: 8086
+  80/tcp: null
 ports_description:
   8086/tcp: InfluxDB server
+  80/tcp: Not required for Ingress
 options:
   log_level: info
   influxd_log_level: warn
