@@ -39,6 +39,7 @@ COPY rootfs /
 RUN chmod 755 /etc/s6-overlay/s6-rc.d/init-influxdb2/run
 RUN chmod 755 /etc/s6-overlay/s6-rc.d/influxdb2-server/run
 RUN chmod 755 /etc/s6-overlay/s6-rc.d/influxdb2-server/finish
+RUN chmod 755 /etc/cont-init.d/nginx.sh
 
 # Build arguments
 ARG BUILD_ARCH
