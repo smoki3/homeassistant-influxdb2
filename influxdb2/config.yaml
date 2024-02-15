@@ -1,12 +1,14 @@
 ---
 name: InfluxDB2
-version: 0.1.0.0
-slug: influxdb2
+version: 0.2.0.0
+slug: influxdbin2
 description: Scalable datastore for metrics, events, and real-time analytics. Running InfluxDB v2.x on ARCH64 and ARM64 Achitecture
 url: https://github.com/Dattel/homeassistant-influxdb2
 startup: services
 homeassistant: 0.92.0b2
-webui: http://[HOST]:[PORT:8086]
+ingress: true
+ingress_port: 1337
+ingress_stream: true
 hassio_api: true
 arch:
   - aarch64
@@ -18,8 +20,10 @@ map:
   - share:rw
   - ssl
 ports:
+  80/tcp: null
   8086/tcp: 8086
 ports_description:
+  80/tcp: Web interface (Not required for Ingress)
   8086/tcp: InfluxDB server
 options:
   log_level: info
