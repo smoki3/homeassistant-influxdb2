@@ -10,13 +10,6 @@ ARG BUILD_ARCH=amd64
 
 RUN \
     apt-get update \
-    && apt-get install -y --no-install-recommends \
-        fonts-noto-cjk=1:20220127+repack1-1 \
-        libfontconfig1=2.14.1-4 \
-        memcached=1.6.18-1 \
-        musl=1.2.3-1 \
-        nginx=1.22.1-9 \
-    \
     && ARCH="${BUILD_ARCH}" \
     && if [ "${BUILD_ARCH}" = "aarch64" ]; then ARCH="arm64"; fi \
     && if [ "${BUILD_ARCH}" = "armhf" ]; then ARCH="arm64"; fi \
@@ -33,14 +26,10 @@ RUN \
     \
     && rm -fr \
     /tmp/* \
-    /etc/nginx \
     /var/{cache,log}/* \
     /var/lib/apt/lists/* \
-    /etc/nginx \
     \
-    && mkdir -p /data/influxdb2/engine \
-    && mkdir -p /var/log/nginx \
-    && touch /var/log/nginx/error.log
+    && mkdir -p /data/influxdb2/engine
 
 
 # Copy root filesystem
