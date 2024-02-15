@@ -10,6 +10,12 @@ ARG BUILD_ARCH=amd64
 
 RUN \
     apt-get update \
+    && apt-get install -y --no-install-recommends \
+        libnginx-mod-http-lua=1:0.10.23-1 \
+        luarocks=3.8.0+dfsg1-1 \
+        nginx=1.22.1-9 \
+        procps=2:4.0.2-3 \
+    \
     && ARCH="${BUILD_ARCH}" \
     && if [ "${BUILD_ARCH}" = "aarch64" ]; then ARCH="arm64"; fi \
     && if [ "${BUILD_ARCH}" = "armhf" ]; then ARCH="arm64"; fi \
