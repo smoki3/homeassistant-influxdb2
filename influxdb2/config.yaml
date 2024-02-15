@@ -1,7 +1,7 @@
 ---
-name: InfluxDB2
+name: InfluxDB2in
 version: 0.2.0.0
-slug: influxdbin2
+slug: influxdb2in
 description: Scalable datastore for metrics, events, and real-time analytics. Running InfluxDB v2.x on ARCH64 and ARM64 Achitecture
 url: https://github.com/Dattel/homeassistant-influxdb2
 startup: services
